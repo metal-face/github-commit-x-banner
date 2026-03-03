@@ -6,7 +6,7 @@ from cairosvg import svg2png
 
 
 async def update_x_banner():
-    github_user = os.getenv("GITHUB_USERNAME")
+    github_user = os.getenv("X_GITHUB_USERNAME")
     chart_url = f"https://ghchart.rshah.org/151515/{github_user}"
 
     async with httpx.AsyncClient() as client:
