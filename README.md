@@ -18,17 +18,20 @@ Automatically updates your X (Twitter) profile banner with your GitHub contribut
 ## Setup
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/github-commit-x-banner.git
    cd github-commit-x-banner
    ```
 
 2. Install dependencies:
+
    ```bash
    uv sync
    ```
 
 3. Set the required environment variables:
+
    ```bash
    export GITHUB_USERNAME=your_github_username
    export X_API_KEY=your_x_api_key
