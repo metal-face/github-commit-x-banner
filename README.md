@@ -33,7 +33,7 @@ Automatically updates your X (Twitter) profile banner with your GitHub contribut
 3. Set the required environment variables:
 
    ```bash
-   export GITHUB_USERNAME=your_github_username
+   export X_GITHUB_USERNAME=your_github_username
    export X_API_KEY=your_x_api_key
    export X_API_SECRET=your_x_api_secret
    export X_ACCESS_TOKEN=your_x_access_token
