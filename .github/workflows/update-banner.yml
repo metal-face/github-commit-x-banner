@@ -1,0 +1,36 @@
+name: Update X Banner
+
+on:
+    schedule:
+        # Runs at 00:00 UTC every day
+        - cron: "0 0 * * *"
+    workflow_dispatch: # Allows you to trigger the script manually from the Actions tab
+
+jobs:
+    update-banner:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.10"
+
+            - name: Install System Dependencies
+              # Required for cairosvg to process the image conversions
+              run: sudo apt-get update && sudo apt-get install -y libcairo2-dev
+
+            - name: Install Python Dependencies
+              run: pip install requests tweepy cairosvg
+
+            - name: Run Banner Update Script
+              env:
+                  X_GITHUB_USERNAME: ${{ secrets.X_GITHUB_USERNAME }}
+                  X_API_KEY: ${{ secrets.X_API_KEY }}
+                  X_API_SECRET: ${{ secrets.X_API_SECRET }}
+                  X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+                  X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+              run: python update_banner.py
