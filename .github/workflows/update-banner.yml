@@ -14,8 +14,8 @@ jobs:
             - name: Checkout Repository
               uses: actions/checkout@v4
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
+            - name: Install uv
+              uses: astral-sh/setup-uv@v5
               with:
                   python-version: "3.13"
 
@@ -24,7 +24,7 @@ jobs:
               run: sudo apt-get update && sudo apt-get install -y libcairo2-dev
 
             - name: Install Python Dependencies
-              run: pip install requests tweepy cairosvg
+              run: uv sync
 
             - name: Run Banner Update Script
               env:
@@ -33,4 +33,4 @@ jobs:
                   X_API_SECRET: ${{ secrets.X_API_SECRET }}
                   X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
                   X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
-              run: python update_banner.py
+              run: uv run main.py
